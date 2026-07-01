@@ -1,0 +1,20 @@
+{
+  "name": "pgiq-mcp",
+  "version": "1.1.0",
+  "description": "PowerGridIQ MCP server: the PGIQ Rating as agent tools (where to site or schedule a large electricity load across 67 global power markets).",
+  "type": "module",
+  "bin": { "pgiq-mcp": "index.js" },
+  "main": "index.js",
+  "files": ["index.js", "README.md"],
+  "scripts": { "start": "node index.js" },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "keywords": ["mcp", "model-context-protocol", "powergridiq", "electricity", "grid", "data-center", "datacenter", "siting", "carbon-aware", "energy", "ai-agents"],
+  "homepage": "https://powergridiq.com/build",
+  "repository": { "type": "git", "url": "https://github.com/powergridiq/pgiq-mcp" },
+  "bugs": { "url": "mailto:hello@powergridiq.com" },
+  "author": "PowerGridIQ (https://powergridiq.com)",
+  "license": "UNLICENSED"
+}
