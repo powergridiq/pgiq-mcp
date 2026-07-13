@@ -53,6 +53,21 @@ const TOOLS = [
     },
   },
   {
+    name: "pgiq_screen",
+    description:
+      "Screen every rated market against hard constraints and return only the markets that pass, best tier first. Use when the decision has firm limits (a cost ceiling, a maximum time-to-connect, a minimum tier, a minimum carbon score) rather than a weighting preference. Complements pgiq_best: pgiq_best ranks by lens, pgiq_screen filters by thresholds. The qualifying set, tier and outlook are free; precise cost midpoints and wait-in-months need a paid key (set PGIQ_KEY).",
+    inputSchema: {
+      type: "object",
+      properties: {
+        max_cost: { type: "number", description: "Maximum all-in realized cost, US dollars per MWh. Markets above this are excluded." },
+        max_months: { type: "integer", description: "Maximum typical time-to-connect, in months." },
+        min_tier: { type: "integer", description: "Only return markets at this tier or better (1=best, 5=worst)." },
+        min_carbon: { type: "integer", description: "Minimum carbon pillar score, 0-100 (higher is cleaner)." },
+        group: { type: "string", enum: ["us", "canada", "europe", "middle_east", "latam", "asia", "oceania", "africa"], description: "Optional region filter." },
+      },
+    },
+  },
+  {
     name: "pgiq_developments",
     description:
       "Recent dated, cited grid developments (moratoria, tariffs, queue reforms, big builds) across markets, newest first. Optionally filter to one market.",
@@ -82,7 +97,7 @@ const TOOLS = [
   },
 ];
 
-const server = new Server({ name: "powergridiq", version: "1.0.0" }, { capabilities: { tools: {} } });
+const server = new Server({ name: "powergridiq", version: "1.1.0" }, { capabilities: { tools: {} } });
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: TOOLS }));
 
@@ -96,6 +111,10 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
       const q = new URLSearchParams();
       for (const k of ["lens", "group", "min_tier", "limit"]) if (a[k] != null) q.set(k, String(a[k]));
       data = await api("/best" + (q.toString() ? "?" + q.toString() : ""));
+    } else if (name === "pgiq_screen") {
+      const q = new URLSearchParams();
+      for (const k of ["max_cost", "max_months", "min_tier", "min_carbon", "group"]) if (a[k] != null) q.set(k, String(a[k]));
+      data = await api("/screen" + (q.toString() ? "?" + q.toString() : ""));
     } else if (name === "pgiq_developments") {
       data = await api("/developments" + (a.market ? "?market=" + encodeURIComponent(a.market) : ""));
     } else if (name === "pgiq_grid") {
