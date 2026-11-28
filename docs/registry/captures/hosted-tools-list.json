@@ -1,0 +1,523 @@
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "tools": [
+      {
+        "name": "get_market",
+        "description": "The PGIQ Rating and evidence for one market: tier (1 Prime to 5 Largely closed), 0-100 score, pillars with rationale, outlook, confidence, delivered cost (realized_cost, USD/MWh), connection timing, sources and report_url. Same response as GET /api/v1/ratings/{market}. Cost figures are for the standard case: a 100 MW load at 95% load factor on high-voltage (transmission-level) service, US dollars per MWh, delivered (not wholesale). Responses carry figures.{field} = {value, unit, as_of, source, method, confidence, stable_id, report_url} where available: quote the unit and as_of from it. A null value carries figures.{field}.absence (insufficient_evidence, structurally_unavailable, not_collected or withheld) with reason_text; report which one and never report an absent value as zero. Fields that need an Analyst Desk key come back withheld for a free caller; send the key as Authorization: Bearer <key> on the MCP request.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "market": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+              "description": "Market id (public slug), e.g. 'ontario', 'ercot-west'. /api/v1/markets lists them."
+            }
+          },
+          "required": [
+            "market"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "screen",
+        "description": "Screen every rated market against hard limits and return a verdict for every market in scope. does_not_qualify means measured and outside the limit; insufficient_evidence means no record exists and the market was never tested (never report it as a rejection). required_mw is recorded but not tested. Verdicts are free; precise observed figures need a Desk key. Same response as GET /api/v1/screen. Cost figures are for the standard case: a 100 MW load at 95% load factor on high-voltage (transmission-level) service, US dollars per MWh, delivered (not wholesale). Responses carry figures.{field} = {value, unit, as_of, source, method, confidence, stable_id, report_url} where available: quote the unit and as_of from it. A null value carries figures.{field}.absence (insufficient_evidence, structurally_unavailable, not_collected or withheld) with reason_text; report which one and never report an absent value as zero. Fields that need an Analyst Desk key come back withheld for a free caller; send the key as Authorization: Bearer <key> on the MCP request.",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "target_cod": {
+              "type": "string",
+              "maxLength": 10,
+              "description": "Required commercial operation date: a year (2030) or an ISO date."
+            },
+            "required_mw": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Load size in MW. Recorded but not tested."
+            },
+            "min_evidence_depth": {
+              "type": "string",
+              "enum": [
+                "M1",
+                "M2",
+                "M3",
+                "M4"
+              ]
+            },
+            "max_cost": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Maximum delivered recurring cost, USD/MWh, standard case."
+            },
+            "max_months": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Maximum typical time-to-connect, months."
+            },
+            "min_tier": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            },
+            "min_carbon": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "group": {
+              "type": "string",
+              "enum": [
+                "us",
+                "canada",
+                "europe",
+                "middle_east",
+                "latam",
+                "asia",
+                "oceania",
+                "africa"
+              ]
+            }
+          }
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "whats_changed",
+        "description": "Dated, cited changes (rating actions, developments, cost changes, scheduled changes, regulatory decisions, corrections), newest first. Each item has date_iso at its stated precision (date_precision day, month or year), a citation, a consequence or a note saying why none, and a verification_status; unverified items are flagged, not dropped. `since` keeps items whose period can fall on or after it. Same response as GET /api/v1/whats-changed.",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "markets": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+              },
+              "description": "Optional market ids."
+            },
+            "since": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+              "description": "Optional ISO date, YYYY-MM-DD."
+            }
+          }
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "claims",
+        "description": "The typed, sourced claims behind one market's rating (claim_id, predicate, value, unit, as_of, method, confidence, sources, citation where present), plus its gaps. Same response as GET /api/v1/markets/{market}/claims. Responses carry figures.{field} = {value, unit, as_of, source, method, confidence, stable_id, report_url} where available: quote the unit and as_of from it. A null value carries figures.{field}.absence (insufficient_evidence, structurally_unavailable, not_collected or withheld) with reason_text; report which one and never report an absent value as zero. Fields that need an Analyst Desk key come back withheld for a free caller; send the key as Authorization: Bearer <key> on the MCP request.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "market": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+              "description": "Market id (public slug), e.g. 'ontario', 'ercot-west'. /api/v1/markets lists them."
+            }
+          },
+          "required": [
+            "market"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "gaps",
+        "description": "What PowerGridIQ does NOT hold for one market, each with a plain question to put to the utility. A gap is not evidence that a risk is absent; say so when reporting it. Same response as GET /api/v1/markets/{market}/gaps.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "market": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+              "description": "Market id (public slug), e.g. 'ontario', 'ercot-west'. /api/v1/markets lists them."
+            }
+          },
+          "required": [
+            "market"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "list_markets",
+        "description": "List every rated power market with its PGIQ tier (1 Prime to 5 Largely closed), 0-100 PGIQ Rating, Fundamentals score and outlook, as of the rating vintage (as_of). Start here to find market ids. Same response as GET /api/v1/markets.",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {}
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "best",
+        "description": "A ranked shortlist for siting a large electricity load under a lens (default, cost, carbon, momentum): top markets with score, tier, a one-line why and lens_score (0-100; null without an Analyst Desk key, the order is free). It ranks; it does not certify. Same response as GET /api/v1/best. Cost figures are for the standard case: a 100 MW load at 95% load factor on high-voltage (transmission-level) service, US dollars per MWh, delivered (not wholesale).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "lens": {
+              "type": "string",
+              "enum": [
+                "default",
+                "cost",
+                "carbon",
+                "momentum"
+              ]
+            },
+            "group": {
+              "type": "string",
+              "enum": [
+                "us",
+                "canada",
+                "europe",
+                "middle_east",
+                "latam",
+                "asia",
+                "oceania",
+                "africa"
+              ]
+            },
+            "min_tier": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            }
+          }
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "rating_actions",
+        "description": "Rating actions (new rating, affirmed, upgrade, downgrade, outlook change) with date, date_iso at its stated date_precision, and the trigger, optionally for one market. Same response as GET /api/v1/actions.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "market": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+              "description": "Market id (public slug), e.g. 'ontario', 'ercot-west'. /api/v1/markets lists them."
+            }
+          },
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "developments",
+        "description": "Dated, cited grid developments (moratoria, tariffs, queue reforms, large builds), optionally for one market. An announcement is not delivery; each row states its stage. Rows sharing an event_id are one real-world event: do not count or sum them twice. Same response as GET /api/v1/developments.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "market": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+              "description": "Market id (public slug), e.g. 'ontario', 'ercot-west'. /api/v1/markets lists them."
+            }
+          },
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "grid",
+        "description": "Grid snapshot for one market: average operational carbon intensity (gCO2/kWh, derived from the fuel mix, not measured), a modelled wholesale price baseline (USD/MWh; not a live price), fuel mix, demand and capacity (MW). Same response as GET /api/v1/grid/{market}.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "market": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+              "description": "Market id (public slug), e.g. 'ontario', 'ercot-west'. /api/v1/markets lists them."
+            }
+          },
+          "required": [
+            "market"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "price_index",
+        "description": "The PowerGridIQ European Day-Ahead Power Price Index (Preview): an equal-weighted EUR/MWh basket with its signal, latest day and windows. The daily series is omitted unless include_series is true. Same response as GET /api/v1/price-index.",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "include_series": {
+              "type": "boolean"
+            }
+          }
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "cost_history",
+        "description": "What changed in one market's recurring electricity cost record and who moved it: the market, or PowerGridIQ (a method or data correction). Only market-driven changes say the market got more or less expensive. Same response as GET /api/v1/cost-history/{market}. Cost figures are for the standard case: a 100 MW load at 95% load factor on high-voltage (transmission-level) service, US dollars per MWh, delivered (not wholesale).",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "market": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+              "description": "Market id (public slug), e.g. 'ontario', 'ercot-west'. /api/v1/markets lists them."
+            }
+          },
+          "required": [
+            "market"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "search_markets",
+        "description": "Find PowerGridIQ market ids from what a person typed: a name, part of one, a word inside parentheses, or a common alias (Texas -> ercot, UK -> great-britain, PJM or NoVA -> northern-virginia). Same rules as the homepage search: exact name or id first, then alias, then (3+ characters) name prefix, word prefix and substring. Short codes are never loose-matched (SE is US Southeast here, not Sweden). `resolved` is set only when the homepage would open a market directly; otherwise read `matches`. On no match, `suggestions` lists the three closest names: they are NOT matches, offer them as questions. Returns market_id, display_name, group, type and report_url only; call get_market for the rating.",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "query"
+          ],
+          "properties": {
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100,
+              "description": "What the user typed, e.g. 'Texas', 'virginia', 'UK'."
+            }
+          }
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "cite",
+        "description": "The citation record for one PowerGridIQ claim, by claim_id (from the claims tool or a figure's report): the claim with its citation text, permalink, as_of, method, confidence and sources (publisher, title, url, published_at, retrieved_at, locator). Quote `citation` and `permalink` as given. Dates keep their stated precision: as_of and retrieved_at are often a month ('June 2026') and published_at is often null; never sharpen a month into a day or fill a null. Same response as GET /api/v1/claims/{claim_id}. An unknown claim_id is an error that lists the market's valid ids.",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "claim_id"
+          ],
+          "properties": {
+            "claim_id": {
+              "type": "string",
+              "maxLength": 200,
+              "pattern": "^pgiq:claim:[a-z0-9][a-z0-9-]{0,63}(:[a-z0-9_-]{1,64}){2,3}$",
+              "description": "e.g. 'pgiq:claim:ontario:pgiq_tier:june-2026'."
+            }
+          }
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "policy_and_tariff_changes",
+        "description": "Scheduled policy and tariff changes, pending decisions and dated regulatory decisions for large loads, newest first: the items of GET /api/v1/whats-changed whose kind is scheduled_change, pending_decision or regulatory_decision, unchanged (same ids, dates, citations and verification). Dates: each item has its own date_iso at its stated precision (date_precision day, month or year; null with date_text kept when no year is stated) and date_role says whether the date is when it happened (occurred), takes effect (effective) or is expected (expected). An expected date is not delivery; an announcement is not delivery. There is no list-wide as-of: never use the rating vintage as an item's date. `published` null means PowerGridIQ did not record when it published the item; the citation says so. Verification: items citing an outside source are not_assessed (unverified true) unless they are PowerGridIQ's own record (pgiq_record); report the flag. Absence: a headline, consequence or source title that states a figure (a size, share, price or amount) is withheld whole from this list with a note, and the figures are on the market's own report and get_market; a missing source document is stated in source_note, never filled in. Tariff figures on the report are in each tariff's own currency, not converted. Developments are not included (use whats_changed or developments). With exactly one market, regulatory_momentum_read gives that market's current momentum read verbatim, as an undated opinion (as_of null, as_of_absence not_collected), not a change event; it is not given for several markets at once. `since` keeps items whose period can fall on or after it; undated items are then left out and counted in undated_excluded.",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "markets": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+              },
+              "description": "Optional market ids. With exactly one, the market's undated regulatory-momentum read is added."
+            },
+            "since": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+              "description": "Optional ISO date, YYYY-MM-DD."
+            }
+          }
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "compare_markets",
+        "description": "Compare 2 markets side by side (up to 4 with an Analyst Desk key), in the order given; never a ranking. Free: per market the headline (tier, tier_name, score, outlook, confidence, under_review), the delivered-cost band (low and high USD/MWh for the standard case; no midpoint) and the connection wait as a year band. No pillar scores, cost midpoint, wait in months or queue detail in a free comparison; each market's own full record is free from get_market. Scores within 2 points are a tie (score_comparison), never 'beats' or 'edges'. A cost band has no recorded date: as_of is null with as_of_absence not_collected; never use the rating vintage as the band's date. 3 or 4 markets without a Desk key returns an error with the upgrade link (HTTP 402). Same response as GET /api/v1/compare?markets=a,b. Cost figures are for the standard case: a 100 MW load at 95% load factor on high-voltage (transmission-level) service, US dollars per MWh, delivered (not wholesale).",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "markets"
+          ],
+          "properties": {
+            "markets": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 4,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+              },
+              "description": "2 market ids (3 or 4 need an Analyst Desk key), e.g. ['ontario', 'spp']."
+            }
+          }
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "draft_memo",
+        "description": "The cited comparison memo and export. Analyst Desk only: without a Desk key it returns an error with the upgrade link (HTTP 402); with one it currently says the API memo is not built yet (HTTP 501) and points to the Desk's print export on /shortlist. For a free comparison use compare_markets. Same response as GET /api/v1/memo?markets=a,b.",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "markets"
+          ],
+          "properties": {
+            "markets": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 4,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+              },
+              "description": "2 to 4 market ids."
+            }
+          }
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "delivered_cost",
+        "description": "Delivered electricity cost for a stated load in one market (Task 55, revamp Task 31; same response as GET /api/v1/cost/quote). Inputs are presets only (mw, lf as a fraction, service level); nothing is interpolated. Read `state` and `applies_to_request` first. State 1 (recomputed from the filed tariff) and 2 (partly recomputed: one layer from the tariff, in that tariff's own currency, not converted) set top-level low_per_mwh/high_per_mwh with every line, formula and the `tariff` (utility, rate sheet, effective_date). State 3 (declared case only) and 4 (outside published tariff scope) leave top-level low_per_mwh/high_per_mwh null and lines empty: there is no figure for this load. The nested declared_case_band is the 100 MW, 95% load factor, high-voltage case only, USD per MWh, band ends only; never scale it or present it as this load's cost. Dates (Task16): each line's as_of is the effective date of that line's own rate record (as_of_sources names it); the total's as_of is the latest of its lines' dates, the date from which the whole total is in force, and component_as_of lists every line's date. If any line's date is unknown the total's as_of is null with as_of_reason; never fill it in. States 3 and 4 have no figure and no as_of. declared_case_band_dates.as_of is null unless an editor's reviewed_on is recorded; published_in_vintage is when PowerGridIQ first recorded the band values, not when they were true, and is never an as_of. tariff.effective_date is the base instrument's date only. Never report an absent value as zero. Cite report_url.",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "market"
+          ],
+          "properties": {
+            "market": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+              "description": "Market id (public slug), e.g. 'ontario', 'ercot-west'. /api/v1/markets lists them."
+            },
+            "mw": {
+              "type": "number",
+              "enum": [
+                5,
+                10,
+                20,
+                25,
+                50,
+                75,
+                100,
+                150,
+                200,
+                300,
+                500,
+                750,
+                1000
+              ],
+              "description": "Load size, MW. Default 100."
+            },
+            "lf": {
+              "type": "number",
+              "enum": [
+                0.4,
+                0.45,
+                0.5,
+                0.55,
+                0.6,
+                0.65,
+                0.7,
+                0.75,
+                0.8,
+                0.85,
+                0.9,
+                0.95,
+                1
+              ],
+              "description": "Load factor as a fraction. Default 0.95."
+            },
+            "service": {
+              "type": "string",
+              "enum": [
+                "transmission",
+                "sub_transmission",
+                "primary_distribution"
+              ],
+              "description": "Service level. Default transmission (high voltage)."
+            }
+          }
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "openWorldHint": false
+        }
+      }
+    ]
+  }
+}

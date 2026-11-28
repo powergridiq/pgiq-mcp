@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-11-28T12:08:25-05:00",
+  "schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "endpoints": {
+    "https://registry.modelcontextprotocol.io/v0.1/validate": {
+      "http_status": 200,
+      "valid": true,
+      "issues": []
+    },
+    "https://registry.modelcontextprotocol.io/v0/validate": {
+      "http_status": 200,
+      "valid": true,
+      "issues": []
+    }
+  },
+  "note": "Validation only. Nothing was published. A local jsonschema check was not run (package not installed)."
+}

@@ -1,0 +1,137 @@
+{
+  "market_id": "ireland",
+  "generated_at": "June 2026",
+  "schema_version": "1.0",
+  "claim_count": 10,
+  "note": "A gap is not evidence that the risk is absent. It means we have not assessed it.",
+  "claims": [
+    {
+      "claim_id": "pgiq:claim:ireland:pgiq_tier:june-2026",
+      "predicate": "pgiq_tier",
+      "value": {
+        "base": 5,
+        "label": "Largely closed"
+      },
+      "unit": null,
+      "as_of": "June 2026",
+      "citation": "Ireland (Dublin): PGIQ tier. PowerGridIQ, June 2026. https://powergridiq.com/claims/pgiq:claim:ireland:pgiq_tier:june-2026. Claim pgiq:claim:ireland:pgiq_tier:june-2026.",
+      "permalink": "https://powergridiq.com/claims/pgiq:claim:ireland:pgiq_tier:june-2026",
+      "method": "expert_judgment"
+    },
+    {
+      "claim_id": "pgiq:claim:ireland:recurring_power_cost:june-2026",
+      "predicate": "recurring_power_cost",
+      "value": {
+        "low": 130,
+        "base": 150,
+        "high": 180
+      },
+      "unit": "USD/MWh",
+      "as_of": "June 2026",
+      "citation": "Ireland (Dublin): Recurring delivered power cost. PowerGridIQ, June 2026. https://powergridiq.com/claims/pgiq:claim:ireland:recurring_power_cost:june-2026. Claim pgiq:claim:ireland:recurring_power_cost:june-2026.",
+      "permalink": "https://powergridiq.com/claims/pgiq:claim:ireland:recurring_power_cost:june-2026",
+      "method": "modelled"
+    },
+    {
+      "claim_id": "pgiq:claim:ireland:generation_storage_queue_depth:june-2026",
+      "predicate": "generation_storage_queue_depth",
+      "value": {
+        "base": 5
+      },
+      "unit": "GW",
+      "as_of": "June 2026",
+      "citation": "Ireland (Dublin): Generation storage queue depth. PowerGridIQ, June 2026. https://powergridiq.com/claims/pgiq:claim:ireland:generation_storage_queue_depth:june-2026. Claim pgiq:claim:ireland:generation_storage_queue_depth:june-2026.",
+      "permalink": "https://powergridiq.com/claims/pgiq:claim:ireland:generation_storage_queue_depth:june-2026",
+      "method": "measured"
+    },
+    {
+      "claim_id": "pgiq:claim:ireland:connection_wait:june-2026",
+      "predicate": "connection_wait",
+      "value": {
+        "base": 48
+      },
+      "unit": "months",
+      "as_of": "June 2026",
+      "citation": "Ireland (Dublin): Connection wait. PowerGridIQ, June 2026. https://powergridiq.com/claims/pgiq:claim:ireland:connection_wait:june-2026. Claim pgiq:claim:ireland:connection_wait:june-2026.",
+      "permalink": "https://powergridiq.com/claims/pgiq:claim:ireland:connection_wait:june-2026",
+      "method": "measured"
+    },
+    {
+      "claim_id": "pgiq:claim:ireland:queue_withdrawal_rate:june-2026",
+      "predicate": "queue_withdrawal_rate",
+      "value": {
+        "base": 30
+      },
+      "unit": "percent",
+      "as_of": "June 2026",
+      "citation": "Ireland (Dublin): Queue withdrawal rate. PowerGridIQ, June 2026. https://powergridiq.com/claims/pgiq:claim:ireland:queue_withdrawal_rate:june-2026. Claim pgiq:claim:ireland:queue_withdrawal_rate:june-2026.",
+      "permalink": "https://powergridiq.com/claims/pgiq:claim:ireland:queue_withdrawal_rate:june-2026",
+      "method": "measured"
+    },
+    {
+      "claim_id": "pgiq:claim:ireland:scheduled_change:june-2026:1",
+      "predicate": "scheduled_change",
+      "value": {
+        "base": "EirGrid assesses conditional self-supply connections under the new Large Energy Users policy",
+        "effective": "2026",
+        "year": 2026
+      },
+      "unit": null,
+      "as_of": "June 2026",
+      "citation": "Ireland (Dublin): Scheduled change. PowerGridIQ, June 2026. https://powergridiq.com/claims/pgiq:claim:ireland:scheduled_change:june-2026:1. Claim pgiq:claim:ireland:scheduled_change:june-2026:1.",
+      "permalink": "https://powergridiq.com/claims/pgiq:claim:ireland:scheduled_change:june-2026:1",
+      "method": "reported"
+    },
+    {
+      "claim_id": "pgiq:claim:ireland:forward_adequacy:june-2026",
+      "predicate": "forward_adequacy",
+      "value": {
+        "base": "elevated",
+        "label": "Tight"
+      },
+      "unit": null,
+      "as_of": "June 2026",
+      "citation": "Ireland (Dublin): Forward resource adequacy. PowerGridIQ, June 2026. https://powergridiq.com/claims/pgiq:claim:ireland:forward_adequacy:june-2026. Claim pgiq:claim:ireland:forward_adequacy:june-2026.",
+      "permalink": "https://powergridiq.com/claims/pgiq:claim:ireland:forward_adequacy:june-2026",
+      "method": "historical"
+    },
+    {
+      "claim_id": "pgiq:claim:ireland:average_operational_carbon_intensity:june-2026",
+      "predicate": "average_operational_carbon_intensity",
+      "value": {
+        "base": 270
+      },
+      "unit": "gCO2eq/kWh",
+      "as_of": "June 2026",
+      "citation": "Ireland (Dublin): Average operational carbon intensity. PowerGridIQ, June 2026. https://powergridiq.com/claims/pgiq:claim:ireland:average_operational_carbon_intensity:june-2026. Claim pgiq:claim:ireland:average_operational_carbon_intensity:june-2026.",
+      "permalink": "https://powergridiq.com/claims/pgiq:claim:ireland:average_operational_carbon_intensity:june-2026",
+      "method": "modelled"
+    },
+    {
+      "claim_id": "pgiq:claim:ireland:local_deliverability:june-2026",
+      "predicate": "local_deliverability",
+      "value": {
+        "base": "published_checkable",
+        "granularity": "27 distribution planning zones, plus a published transmission constrained-area overview for data centres"
+      },
+      "unit": null,
+      "as_of": "June 2026",
+      "citation": "Ireland (Dublin): Local deliverability. PowerGridIQ, June 2026. https://powergridiq.com/claims/pgiq:claim:ireland:local_deliverability:june-2026. Claim pgiq:claim:ireland:local_deliverability:june-2026.",
+      "permalink": "https://powergridiq.com/claims/pgiq:claim:ireland:local_deliverability:june-2026",
+      "method": "reported"
+    },
+    {
+      "claim_id": "pgiq:claim:ireland:regulatory_momentum:june-2026",
+      "predicate": "regulatory_momentum",
+      "value": {
+        "base": "adverse",
+        "direction": "improving"
+      },
+      "unit": null,
+      "as_of": "June 2026",
+      "citation": "Ireland (Dublin): Regulatory momentum. PowerGridIQ, June 2026. https://powergridiq.com/claims/pgiq:claim:ireland:regulatory_momentum:june-2026. Claim pgiq:claim:ireland:regulatory_momentum:june-2026.",
+      "permalink": "https://powergridiq.com/claims/pgiq:claim:ireland:regulatory_momentum:june-2026",
+      "method": "expert_judgment"
+    }
+  ]
+}

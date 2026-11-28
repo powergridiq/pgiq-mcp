@@ -1,0 +1,70 @@
+{
+  "claim_id": "pgiq:claim:ireland:pgiq_tier:june-2026",
+  "claim_type": "opinion",
+  "status": "active",
+  "subject": {
+    "market_id": "ireland",
+    "geography_id": "pgiq:geo:ireland"
+  },
+  "predicate": "pgiq_tier",
+  "value": {
+    "base": 5,
+    "label": "Largely closed"
+  },
+  "unit": null,
+  "definition": "PGIQ tier for siting a large new electricity load; a directional screen, not a connection guarantee",
+  "project_archetype": null,
+  "as_of": "June 2026",
+  "valid_for": {
+    "start": "June 2026",
+    "end": null
+  },
+  "method": "expert_judgment",
+  "method_source_label": null,
+  "confidence": {
+    "source_quality": "n/a (opinion)",
+    "coverage": "all rated markets",
+    "model_uncertainty": "n/a",
+    "opinion_confidence": "High"
+  },
+  "sources": [
+    {
+      "publisher": "PGIQ methodology",
+      "title": "PGIQ methodology",
+      "url": "https://powergridiq.com/methodology",
+      "published_at": null,
+      "retrieved_at": "June 2026",
+      "locator": "tier definitions",
+      "quote_or_field": null,
+      "license": "public source, cited under fair use",
+      "redistribution_rights": "link and quote with attribution; no bulk redistribution"
+    }
+  ],
+  "transform": null,
+  "contradictions": [],
+  "supersedes": null,
+  "note": "Grid-only connection is effectively closed around Dublin; viable only with full on-site generation. The clearest hard gate in the set. The outlook is positive only because the 2025 policy reset opened a narrow, self-supply-conditioned path.",
+  "schema_version": "1.0",
+  "methodology_version": "pgiq-rating-v2",
+  "definition_version": "carbon_scope@1.0;connection_process@1.0;cost_archetype@1.0;evidence_tiers@1.0;reliability_layers@1.0",
+  "content_hash": "sha256:b1d442075be27b20972785756ac335a27f7d9812c41042e06db8c59cb4b11437",
+  "permalink": "https://powergridiq.com/claims/pgiq:claim:ireland:pgiq_tier:june-2026",
+  "report_anchor": "https://powergridiq.com/rating/ireland#evidence",
+  "citation": "Ireland (Dublin): PGIQ tier. PowerGridIQ, June 2026. https://powergridiq.com/claims/pgiq:claim:ireland:pgiq_tier:june-2026. Claim pgiq:claim:ireland:pgiq_tier:june-2026.",
+  "figures": {
+    "value": {
+      "value": 5,
+      "unit": "Largely closed",
+      "as_of": "2026-06",
+      "source": {
+        "name": "PGIQ methodology",
+        "url": "https://powergridiq.com/methodology"
+      },
+      "method": "expert_judgment",
+      "confidence": "High",
+      "stable_id": "pgiq:claim:ireland:pgiq_tier:june-2026",
+      "report_url": null
+    }
+  },
+  "figure_contract_version": "1.0"
+}

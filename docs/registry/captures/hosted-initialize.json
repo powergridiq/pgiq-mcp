@@ -1,0 +1,18 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "protocolVersion": "2025-03-26",
+    "capabilities": {
+      "tools": {
+        "listChanged": false
+      }
+    },
+    "serverInfo": {
+      "name": "powergridiq",
+      "title": "PowerGridIQ (hosted MCP, partial)",
+      "version": "0.2.0"
+    },
+    "instructions": "PowerGridIQ hosted MCP (partial): read-only tools over the public API (get_market, screen, whats_changed, claims, gaps, list_markets, best, rating_actions, developments, grid, price_index, cost_history, search_markets, cite, policy_and_tariff_changes, compare_markets, draft_memo, delivered_cost). Not yet available here: connection_wait. Answers are the same as the REST API's for the same caller; send an Analyst Desk key as Authorization: Bearer <key> for Desk fields."
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "id": "ireland",
+  "name": "Ireland (Dublin)",
+  "tier": 5,
+  "tier_name": "Largely closed",
+  "score": 31,
+  "outlook": "Positive",
+  "confidence": "High",
+  "under_review": false,
+  "report_url": "https://powergridiq.com/rating/ireland",
+  "as_of": "June 2026",
+  "thesis": "Grid-only connection is effectively closed around Dublin; viable only with full on-site generation. The clearest hard gate in the set. The outlook is positive only because the 2025 policy reset opened a narrow, self-supply-conditioned path.",
+  "latest_action": {
+    "date": "Oct 2026",
+    "type": "Affirmed",
+    "note": "Cost-pillar score now set by one published rule from the delivered-cost band, not by analyst judgement. The band itself is unchanged. PGIQ Rating 32 to 31. Tier 5 Largely closed unchanged.",
+    "trigger": "Cost-pillar scores set from delivered-cost bands by one published rule (cost-rescore-1.1), separate ratings release",
+    "release": "ratings-release-2026-cost"
+  },
+  "pillars": {
+    "access": 22,
+    "availability": 38,
+    "cost": 35,
+    "momentum": 55,
+    "carbon": 54
+  },
+  "pillar_rationale": {
+    "access": "Hard access gate: a 2021-2025 freeze on new Dublin data-center grid connections was lifted in late 2025 only for projects that self-generate or store their full demand. Grid-only connection stays effectively closed in the east.",
+    "availability": "Tight availability: a small, constrained system with data centers already ~22% of national demand.",
+    "cost": "Scored from what a 100 MW load actually pays here once grid fees, taxes and other charges are added, not from the wholesale price: about $150 per MWh (band $130 to $180). On the PGIQ cost scale ($50 per MWh scores 90, $150 per MWh scores 35) that gives 35. At the cheap end of the band it would score 46; at the dear end, 35.",
+    "momentum": "Historically high momentum (a FLAP-D hub), now gated.",
+    "carbon": "Moderate carbon (~340 g), gas-led."
+  },
+  "sources": [
+    {
+      "label": "Ireland ends moratorium, Energy Connects",
+      "url": "https://www.energyconnects.com/news/utilities/2025/december/ireland-ends-moratorium-on-new-power-links-to-data-centers/"
+    },
+    {
+      "label": "Data centres 22% of demand, CSO",
+      "url": "https://www.cso.ie/en/releasesandpublications/ep/p-dcmec/datacentresmeteredelectricityconsumption2024/"
+    }
+  ],
+  "queue": {
+    "active_gw": 5,
+    "wait_months": 48,
+    "has_detail": true,
+    "wait_band": "4-5 years"
+  },
+  "realized_cost": {
+    "low_usd_per_mwh": 130,
+    "mid_usd_per_mwh": 150,
+    "high_usd_per_mwh": 180,
+    "aggregation": "band",
+    "confidence": "modelled",
+    "basis": "USD per MWh recurring, delivered to the standard 100 MW high-load-factor case, excluding customer-funded connection capital and excluding refundable taxes"
+  }
+}
