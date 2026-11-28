@@ -1,0 +1,22 @@
+{
+  "query": "Ireland",
+  "resolution": "exact",
+  "resolved": {
+    "market_id": "ireland",
+    "display_name": "Ireland (Dublin)",
+    "group": "europe",
+    "type": "market",
+    "report_url": "https://powergridiq.com/rating/ireland"
+  },
+  "matches": [
+    {
+      "market_id": "ireland",
+      "display_name": "Ireland (Dublin)",
+      "group": "europe",
+      "type": "market",
+      "report_url": "https://powergridiq.com/rating/ireland"
+    }
+  ],
+  "suggestions": [],
+  "source": "https://powergridiq.com/market-registry.json (search_aliases and markets; the homepage search uses the same file)"
+}

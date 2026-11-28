@@ -1,0 +1,110 @@
+{
+  "claim_id": "pgiq:claim:ireland:recurring_power_cost:june-2026",
+  "claim_type": "estimate",
+  "status": "active",
+  "subject": {
+    "market_id": "ireland",
+    "geography_id": "pgiq:geo:ireland"
+  },
+  "predicate": "recurring_power_cost",
+  "value": {
+    "low": 130,
+    "base": 150,
+    "high": 180
+  },
+  "unit": "USD/MWh",
+  "definition": "recurring energy, network, delivery, taxes and levies per MWh; EXCLUDES customer-funded connection capital",
+  "project_archetype": "100mw_flat_95pct_lf_transmission_level",
+  "as_of": "June 2026",
+  "valid_for": {
+    "start": "June 2026",
+    "end": null
+  },
+  "method": "modelled",
+  "method_source_label": null,
+  "confidence": {
+    "source_quality": "modelled",
+    "coverage": "2 public fragments",
+    "model_uncertainty": "band spans structuring outcomes",
+    "opinion_confidence": "n/a"
+  },
+  "sources": [
+    {
+      "publisher": "Non-household electricity prices, Ireland highest (Eurostat)",
+      "title": "Non-household electricity prices, Ireland highest (Eurostat)",
+      "url": "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Electricity_price_statistics",
+      "published_at": null,
+      "retrieved_at": "June 2026",
+      "locator": "page",
+      "quote_or_field": null,
+      "license": "public source, cited under fair use",
+      "redistribution_rights": "link and quote with attribution; no bulk redistribution"
+    },
+    {
+      "publisher": "Data centres 22% of demand (CSO Ireland)",
+      "title": "Data centres 22% of demand (CSO Ireland)",
+      "url": "https://www.cso.ie/en/releasesandpublications/ep/p-dcmec/datacentresmeteredelectricityconsumption2024/",
+      "published_at": null,
+      "retrieved_at": "June 2026",
+      "locator": "page",
+      "quote_or_field": null,
+      "license": "public source, cited under fair use",
+      "redistribution_rights": "link and quote with attribution; no bulk redistribution"
+    },
+    {
+      "publisher": "EU electricity price components (Eurostat)",
+      "title": "EU electricity price components (Eurostat)",
+      "url": "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Electricity_price_statistics",
+      "published_at": null,
+      "retrieved_at": "June 2026",
+      "locator": "price components",
+      "quote_or_field": null,
+      "license": "public source, cited under fair use",
+      "redistribution_rights": "link and quote with attribution; no bulk redistribution"
+    }
+  ],
+  "transform": {
+    "formula": "sum(components)",
+    "model_version": "pgiq-rating-v2",
+    "inputs": [
+      {
+        "component": "Wholesale energy",
+        "usd_per_mwh": 88
+      },
+      {
+        "component": "Network & constraint charges",
+        "usd_per_mwh": 45
+      },
+      {
+        "component": "Taxes & levies",
+        "usd_per_mwh": 17
+      }
+    ]
+  },
+  "contradictions": [],
+  "supersedes": null,
+  "note": "Ireland has the most expensive large-load band in the coverage: the highest non-household energy prices in the EU, plus heavy network and constraint costs on a small, tight system.",
+  "schema_version": "1.0",
+  "methodology_version": "pgiq-rating-v2",
+  "definition_version": "carbon_scope@1.0;connection_process@1.0;cost_archetype@1.0;evidence_tiers@1.0;reliability_layers@1.0",
+  "content_hash": "sha256:49d451ae656dd3aab79801874d18fba74ec1f0af2b447555c56c5052350b1ff7",
+  "permalink": "https://powergridiq.com/claims/pgiq:claim:ireland:recurring_power_cost:june-2026",
+  "report_anchor": "https://powergridiq.com/rating/ireland#evidence",
+  "citation": "Ireland (Dublin): Recurring delivered power cost. PowerGridIQ, June 2026. https://powergridiq.com/claims/pgiq:claim:ireland:recurring_power_cost:june-2026. Claim pgiq:claim:ireland:recurring_power_cost:june-2026.",
+  "figures": {
+    "value": {
+      "value": 150,
+      "unit": "USD/MWh",
+      "as_of": "2026-06",
+      "source": {
+        "name": "Non-household electricity prices, Ireland highest (Eurostat)",
+        "url": "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Electricity_price_statistics"
+      },
+      "method": "modelled",
+      "confidence": "n/a",
+      "stable_id": "pgiq:claim:ireland:recurring_power_cost:june-2026",
+      "report_url": null
+    }
+  },
+  "figure_contract_version": "1.0"
+}

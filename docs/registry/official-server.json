@@ -1,0 +1,51 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.powergridiq/pgiq-mcp",
+  "title": "PowerGridIQ",
+  "description": "Power-market ratings, delivered cost, claims and gaps for siting a large electricity load.",
+  "websiteUrl": "https://powergridiq.com/build",
+  "repository": {
+    "url": "https://github.com/powergridiq/pgiq-mcp",
+    "source": "github"
+  },
+  "version": "1.3.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "pgiq-mcp",
+      "version": "1.3.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "PGIQ_KEY",
+          "description": "Optional PowerGridIQ API key (pk_live_...) for a higher quota. Not required for the no-key tier (100 requests per UTC day per IP). An Analyst Desk key is needed for paid outputs.",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "PGIQ_API",
+          "description": "Optional API base override.",
+          "isRequired": false,
+          "isSecret": false
+        }
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://powergridiq.com/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Optional Analyst Desk key, sent as Bearer <key>, for paid outputs. Not required for the no-key tier (100 requests per UTC day per IP).",
+          "isRequired": false,
+          "isSecret": true,
+          "placeholder": "Bearer pk_live_..."
+        }
+      ]
+    }
+  ]
+}
